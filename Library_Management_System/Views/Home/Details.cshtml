@@ -1,0 +1,50 @@
+﻿@model Library_Management_System.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center mt-4">Book Details</h1>
+
+<div class="container mt-5">
+    <div class="card shadow p-4 bg-light">
+        <h4 class="text-center mb-4">Book Information</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold text-secondary">
+                @Html.DisplayNameFor(model => model.BookName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.BookName)
+            </dd>
+            <dt class="col-sm-3 fw-bold text-secondary">
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Author)
+            </dd>
+            <dt class="col-sm-3 fw-bold text-secondary">
+                @Html.DisplayNameFor(model => model.Edition)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Edition)
+            </dd>
+            <dt class="col-sm-3 fw-bold text-secondary">
+                @Html.DisplayNameFor(model => model.Publisher)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Publisher)
+            </dd>
+            <dt class="col-sm-3 fw-bold text-secondary">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+        </dl>
+    </div>
+    <div class="text-center mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.BookID" class="btn btn-warning me-2">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+﻿@* @model IEnumerable<Library_Management_System.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Add new Book</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ *@
+
+ @model IEnumerable<Library_Management_System.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Add New Book</h1>
+    <div class="row mb-2">
+        <div class="col-6">
+            <a asp-action="Create" class="btn btn-success">Create New</a>
+        </div>
+        <div class="col-6 text-end">
+            <form method="post">
+                <input type="search" class="mr-2" name="searchTerm" placeholder="Search book or author" />
+                <button type="submit" asp-action="Index" class="btn btn-success">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().BookName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Author)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Edition)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Publisher)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Quantity)</th>
+                <th>@Html.DisplayNameFor(model => model.First().AvailableCopies)</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Count() > 0)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.BookName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Edition)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Publisher)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.BookID" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.BookID" class="btn btn-info btn-sm">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.BookID" class="btn btn-danger btn-sm">Delete</a>
+                            @if ((item.Quantity - item.AvailableCopies) > 0)
+                            {
+                                <a asp-action="Issue" asp-route-id="@item.BookID" class="btn btn-primary btn-sm">Issue</a>
+
+                            }
+                            else
+                            {
+                                <a asp-action="Issue" asp-route-id="@item.BookID" class="btn btn-primary btn-sm disabled">Issue</a>
+                            }
+                            @if (item.AvailableCopies <= 0)
+                            {
+                                <a asp-action="Return" asp-route-id="@item.BookID" class="btn btn-secondary btn-sm disabled">Return</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Return" asp-route-id="@item.BookID" class="btn btn-secondary btn-sm">Return</a>
+
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td colspan="8">No record found</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

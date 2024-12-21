@@ -1,0 +1,68 @@
+﻿@model Library_Management_System.Models.Book
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center mt-4">Edit Book</h1>
+
+<hr />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit" class="shadow p-4 rounded bg-light">
+                <h4 class="text-center mb-4">Update Book Information</h4>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="BookID" />
+
+                <div class="mb-3">
+                    <label asp-for="BookName" class="form-label fw-bold"></label>
+                    <input asp-for="BookName" class="form-control" />
+                    <span asp-validation-for="BookName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Author" class="form-label fw-bold"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Edition" class="form-label fw-bold"></label>
+                    <input asp-for="Edition" class="form-control" />
+                    <span asp-validation-for="Edition" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Publisher" class="form-label fw-bold"></label>
+                    <input asp-for="Publisher" class="form-control" />
+                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label fw-bold"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Quantity" class="form-label fw-bold"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Save" class="btn btn-success w-50" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
